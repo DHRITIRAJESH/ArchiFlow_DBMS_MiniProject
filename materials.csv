@@ -1,0 +1,61 @@
+category,name,description,unit,durability_rating,maintenance_level,base_price
+Flooring,Vitrified tile 600x600 glossy,"Double-charged glossy vitrified tile with low water absorption; scratch and stain resistant, suited to busy living rooms, lobbies and showrooms.",sqft,5,LOW,85
+Flooring,Vitrified tile 800x1600 matt,"Large-format matt vitrified slab that reduces grout lines; slip-resistant finish good for commercial corridors and high-traffic retail floors.",sqft,5,LOW,140
+Flooring,Ceramic floor tile 400x400,"Budget ceramic floor tile for low-traffic rooms such as bedrooms and storerooms; easy to replace but chips under heavy loads.",sqft,3,LOW,45
+Flooring,Anti-skid ceramic tile,"Textured anti-skid ceramic tile for bathrooms, balconies and wet kitchens; grips well when wet and cleans with a mop.",sqft,4,LOW,55
+Flooring,Italian marble Statuario,"Premium white Italian marble with grey veining; luxurious look for hotel lobbies and villas, but needs sealing and periodic polishing and stains easily.",sqft,4,HIGH,450
+Flooring,Indian granite Black Galaxy,"Hard-wearing black granite with gold flecks; extremely durable for staircases, entrances and heavy-footfall commercial floors.",sqft,5,LOW,180
+Flooring,Kota stone,"Natural limestone from Rajasthan; very affordable and cool underfoot, common for verandas, schools and utility areas, needs occasional polishing.",sqft,4,MEDIUM,40
+Flooring,Engineered wood flooring oak,"Real oak veneer over a stable plywood core; warm residential look for bedrooms and study rooms, sensitive to moisture and scratches.",sqft,3,HIGH,320
+Flooring,Luxury vinyl plank,"Waterproof vinyl planks with a realistic wood look; quiet, affordable, quick click-lock installation for offices and rental apartments.",sqft,3,LOW,90
+Flooring,Epoxy floor coating,"Seamless self-levelling epoxy coating for hospitals, labs, kitchens and warehouses; chemical resistant and hygienic with no joints to trap dirt.",sqft,4,LOW,110
+Wall finish,Natural stone wall cladding,"Split-face natural stone panels for feature walls and exterior facades; weather resistant and rugged, adds texture to elevations.",sqft,5,LOW,210
+Wall finish,Exterior HPL cladding panel,"High-pressure laminate panels for ventilated facades; UV stable colours, resists rain and fading, quick dry installation.",sqft,5,LOW,380
+Wall finish,Wallpaper vinyl,"Washable vinyl wallpaper in many patterns for bedrooms, hotel rooms and cafes; easy to change but can peel in humid rooms.",sqft,2,MEDIUM,60
+Wall finish,Ceramic wall tile 300x600,"Glazed ceramic wall tile for bathroom and kitchen walls; waterproof surface that wipes clean of oil and soap.",sqft,4,LOW,50
+Wall finish,Fluted wooden wall panel,"Decorative fluted MDF panel with wood veneer for reception walls and TV units; elegant look, keep away from water.",sqft,3,MEDIUM,280
+Wall finish,Acoustic fabric wall panel,"Fabric-wrapped mineral wool panel that absorbs sound in auditoriums, conference rooms and classrooms.",sqft,3,MEDIUM,350
+Wall finish,Exposed brick tile,"Thin clay brick tiles giving an exposed-brick look on interior walls of cafes and lofts without full masonry.",sqft,4,LOW,95
+Wall finish,Gypsum wall plaster,"Ready-mix gypsum plaster for smooth interior walls; faster than sand-cement plaster and crack resistant, interior use only.",bag,4,LOW,380
+Ceiling,Gypsum board false ceiling,"Plain gypsum board on a metal frame for seamless false ceilings with cove lighting in homes and offices.",sqft,4,LOW,85
+Ceiling,Acoustic perforated gypsum board,"Perforated gypsum ceiling board that reduces echo in large halls, classrooms and lobbies.",sqft,4,LOW,120
+Ceiling,Mineral fibre ceiling tile 600x600,"Lay-in grid ceiling tile for offices and hospitals; tiles lift out for easy access to wiring and ducts above.",sqft,3,LOW,65
+Ceiling,PVC ceiling panel,"Lightweight waterproof PVC panels for bathrooms, balconies and kitchens in humid or coastal homes.",sqft,3,LOW,55
+Ceiling,Metal baffle ceiling,"Aluminium linear baffles for airports, malls and open offices; modern industrial look, durable and fire safe.",sqft,5,LOW,260
+Ceiling,Wooden slat ceiling,"Solid wood or veneered slats for warm feature ceilings in lounges and restaurants; needs polish every few years.",sqft,3,MEDIUM,340
+Paint,Interior emulsion premium,"Washable low-sheen acrylic emulsion for interior walls; stain resistant and low odour, suited to homes and offices.",litre,4,LOW,420
+Paint,Interior emulsion economy,"Budget distemper-grade interior paint for rental units and back-of-house areas; not washable.",litre,2,MEDIUM,180
+Paint,Anti-fungal exterior emulsion,"Weatherproof exterior paint with anti-fungal and anti-algal additives for humid coastal climates and heavy monsoon areas.",litre,4,LOW,380
+Paint,Textured exterior coating,"Thick textured acrylic coating that hides wall imperfections and resists cracking on exterior facades.",litre,5,LOW,450
+Paint,Waterproof terrace coating,"Elastomeric waterproof coating for roofs and terraces; bridges hairline cracks and stops leaks during monsoon.",litre,4,MEDIUM,520
+Paint,PU wood finish,"Polyurethane clear finish for doors, panelling and furniture; glossy and scratch resistant.",litre,4,MEDIUM,650
+Paint,Anti-microbial hospital paint,"Interior paint with silver-ion anti-microbial protection for hospitals, clinics and schools; washable and hygienic.",litre,4,LOW,560
+Paint,Enamel paint for metal,"Oil-based enamel for railings, grills and gates; protects steel from rust with a glossy finish.",litre,3,MEDIUM,310
+Countertops,Quartz countertop,"Engineered quartz slab for kitchen counters; non-porous, stain resistant and needs no sealing.",sqft,5,LOW,550
+Countertops,Granite countertop,"Polished natural granite for kitchens and vanities; heat resistant and very durable, occasional sealing.",sqft,5,LOW,250
+Countertops,Solid surface Corian-type,"Seamless acrylic solid surface for reception desks, hospital counters and vanities; repairable and hygienic.",sqft,4,LOW,700
+Countertops,Marble vanity top,"Natural marble vanity top for premium bathrooms; elegant but etches with acidic cleaners.",sqft,3,HIGH,400
+Countertops,Stainless steel counter,"Food-grade stainless steel counters for commercial kitchens and labs; hygienic and easy to sanitise.",sqft,5,LOW,600
+Countertops,Laminate countertop,"Budget high-pressure laminate on plywood for pantries and office kitchenettes; avoid hot pans and standing water.",sqft,2,MEDIUM,180
+Doors and windows,uPVC sliding window,"uPVC sliding windows with toughened glass; airtight, low maintenance, good sound and dust insulation for city homes.",sqft,4,LOW,550
+Doors and windows,Aluminium casement window,"Powder-coated aluminium casement windows for offices and facades; slim profiles and strong frames.",sqft,5,LOW,750
+Doors and windows,Teak wood main door,"Solid teak main door with traditional carving; very durable and secure, needs polishing every few years.",piece,5,MEDIUM,65000
+Doors and windows,Flush door with laminate,"Engineered flush door with decorative laminate for bedrooms and offices; affordable and termite treated.",piece,3,LOW,9500
+Doors and windows,Fire-rated steel door,"Two-hour fire-rated steel door for stairwells, electrical rooms and hotel corridors; meets fire code.",piece,5,LOW,28000
+Doors and windows,Frameless glass partition,"Toughened glass partition for cabins and meeting rooms; keeps offices open and bright.",sqft,4,LOW,420
+Doors and windows,WPC bathroom door,"Wood-plastic composite door that is waterproof and termite proof; ideal for bathrooms and coastal homes.",piece,4,LOW,7500
+Plumbing and sanitary,Wall-hung WC,"Wall-mounted toilet with concealed cistern; easy to clean under, saves space in modern bathrooms.",piece,4,LOW,18000
+Plumbing and sanitary,Floor-mounted WC,"Standard floor-mounted toilet; budget friendly and simple to install for residential and school toilets.",piece,4,LOW,7500
+Plumbing and sanitary,Countertop wash basin,"Ceramic countertop basin for vanities in homes and hotels.",piece,4,LOW,5500
+Plumbing and sanitary,Thermostatic shower mixer,"Shower mixer that keeps water temperature steady; safer for children and the elderly.",piece,4,LOW,14000
+Plumbing and sanitary,CPVC pipe 1 inch,"CPVC hot and cold water pipe; corrosion free and long lasting for internal plumbing.",rft,5,LOW,95
+Plumbing and sanitary,Rainwater harvesting filter,"Filter unit that cleans roof runoff before it enters a sump or recharge pit; required by many building bylaws.",piece,4,MEDIUM,12000
+Plumbing and sanitary,Stainless steel kitchen sink,"Double-bowl stainless steel sink with drainboard for home and pantry kitchens.",piece,5,LOW,9000
+Structural and masonry,AAC block,"Lightweight autoclaved aerated concrete block for walls; good thermal insulation, faster construction and less load on structure.",piece,4,LOW,60
+Structural and masonry,Red clay brick,"Traditional burnt clay brick for load-bearing and partition walls; strong and widely available.",piece,4,LOW,9
+Structural and masonry,Fly ash brick,"Eco-friendly brick made from fly ash; uniform size, lower cost and reduced plaster consumption.",piece,4,LOW,7
+Structural and masonry,OPC cement 53 grade,"High-strength ordinary Portland cement for RCC slabs, columns and beams.",bag,5,LOW,410
+Structural and masonry,PPC cement,"Portland pozzolana cement for plastering and masonry; better workability and durability in humid conditions.",bag,5,LOW,380
+Structural and masonry,TMT steel bar Fe 550D,"Ductile thermo-mechanically treated steel reinforcement bar suited to earthquake-prone zones.",kg,5,LOW,72
+Structural and masonry,Waterproofing admixture,"Integral liquid admixture added to concrete and plaster to reduce water seepage in basements and bathrooms.",litre,4,LOW,160
+Structural and masonry,Tile adhesive,"Polymer-modified cement adhesive for fixing large tiles and stone; stronger and thinner than sand-cement bedding.",bag,4,LOW,450
