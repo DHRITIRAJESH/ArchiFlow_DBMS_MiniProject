@@ -1,0 +1,18 @@
+{
+  "name": "archiflow-search",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ArchiFlow semantic search: embeds material descriptions into Qdrant",
+  "scripts": {
+    "check": "node check_setup.mjs",
+    "embed": "node embed_materials.mjs",
+    "search": "node search_test.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.1",
+    "@qdrant/js-client-rest": "1.19.0",
+    "dotenv": "18.0.6",
+    "mysql2": "3.24.5"
+  }
+}
