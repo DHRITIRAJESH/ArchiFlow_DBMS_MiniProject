@@ -28,6 +28,8 @@ export default function MaterialForm({ id }) {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  // { id, warning } when the save worked but semantic search wasn't updated
+  const [saved, setSaved] = useState(null);
 
   useEffect(() => {
     async function loadData() {
@@ -85,6 +87,7 @@ export default function MaterialForm({ id }) {
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");
+    setSaved(null);
     setSubmitting(true);
 
     try {
@@ -105,7 +108,16 @@ export default function MaterialForm({ id }) {
         throw new Error(data.error || "Could not save material.");
       }
 
-      router.push(`/materials/${editing ? id : data.material_id}`);
+      const savedId = editing ? id : data.material_id;
+
+      // Saved in MySQL but Qdrant wasn't updated: stay here so the admin sees why
+      if (data.warning) {
+        setSaved({ id: savedId, warning: data.warning });
+        setSubmitting(false);
+        return;
+      }
+
+      router.push(`/materials/${savedId}`);
     } catch (err) {
       setError(err.message);
       setSubmitting(false);
@@ -156,6 +168,18 @@ export default function MaterialForm({ id }) {
         {error && (
           <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-700">
             {error}
+          </div>
+        )}
+
+        {saved && (
+          <div className="rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800 space-y-2">
+            <p>{saved.warning}</p>
+            <Link
+              href={`/materials/${saved.id}`}
+              className="inline-block font-medium underline"
+            >
+              View saved material →
+            </Link>
           </div>
         )}
 

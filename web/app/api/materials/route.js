@@ -1,5 +1,6 @@
 import { query } from "@/lib/db";
 import { dbError } from "@/lib/dberror";
+import { syncMaterial } from "@/lib/materialSync";
 import { requireUser } from "@/lib/session";
 import {
   MAINTENANCE_LEVELS,
@@ -117,10 +118,14 @@ export async function POST(request) {
       parsed.values
     );
 
+    // MySQL write succeeded; now add it to semantic search (never throws)
+    const { warning } = await syncMaterial(result.insertId);
+
     return Response.json(
       {
         material_id: result.insertId,
         message: "Material added successfully.",
+        ...(warning && { warning }),
       },
       { status: 201 }
     );

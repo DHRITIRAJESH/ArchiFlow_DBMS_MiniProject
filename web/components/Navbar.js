@@ -28,6 +28,7 @@ export default function Navbar() {
       <Link href="/materials" className="hover:underline">Materials</Link>
       <Link href="/suppliers" className="hover:underline">Suppliers</Link>
       <Link href="/price-history" className="hover:underline">Price History</Link>
+      <Link href="/search" className="hover:underline">Search</Link>
       <div className="ml-auto flex items-center gap-4 text-sm">
         {user && <span>{user.name} ({user.role})</span>}
         <button onClick={logout} className="bg-red-600 px-3 py-1 rounded">Logout</button>

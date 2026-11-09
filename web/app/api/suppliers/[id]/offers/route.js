@@ -1,4 +1,5 @@
 import { query } from "@/lib/db";
+import { syncMinPrice } from "@/lib/materialSync";
 import { requireUser } from "@/lib/session";
 import { offerDbError, parseId, parseOffer } from "@/lib/suppliers";
 
@@ -37,8 +38,11 @@ export async function POST(request, { params }) {
       [supplierId, materialId, parsed.unitPrice, parsed.leadTime]
     );
 
+    // A new offer may lower the material's min_price in Qdrant
+    const { warning } = await syncMinPrice(materialId);
+
     return Response.json(
-      { message: "Offer added successfully." },
+      { message: "Offer added successfully.", ...(warning && { warning }) },
       { status: 201 }
     );
   } catch (err) {

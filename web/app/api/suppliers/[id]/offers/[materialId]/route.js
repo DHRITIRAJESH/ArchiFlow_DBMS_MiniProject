@@ -1,4 +1,5 @@
 import { query } from "@/lib/db";
+import { syncMinPrice } from "@/lib/materialSync";
 import { requireUser } from "@/lib/session";
 import {
   offerDbError,
@@ -56,11 +57,15 @@ export async function PUT(request, { params }) {
       Math.round(Number(existing[0].unit_price) * 100) !==
       Math.round(parsed.unitPrice * 100);
 
+    // Only a price change can move min_price; lead time isn't in Qdrant
+    const { warning } = priceChanged ? await syncMinPrice(materialId) : {};
+
     return Response.json({
       message: priceChanged
         ? "Offer updated. The price change was logged to price history by the database trigger."
         : "Offer updated.",
       price_changed: priceChanged,
+      ...(warning && { warning }),
     });
   } catch (err) {
     return offerDbError(err);
@@ -94,7 +99,13 @@ export async function DELETE(request, { params }) {
       return Response.json({ error: "Offer not found." }, { status: 404 });
     }
 
-    return Response.json({ message: "Offer removed successfully." });
+    // Removing the cheapest offer raises (or clears) min_price in Qdrant
+    const { warning } = await syncMinPrice(materialId);
+
+    return Response.json({
+      message: "Offer removed successfully.",
+      ...(warning && { warning }),
+    });
   } catch (err) {
     if (err.errno === 1451) {
       return offerInUseError(err, supplierId, materialId);

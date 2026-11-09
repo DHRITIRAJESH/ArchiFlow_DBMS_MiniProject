@@ -34,6 +34,8 @@ export default function SupplierDetailClient({ id }) {
   const [loadError, setLoadError] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  // Saved in MySQL but Qdrant (semantic search) wasn't updated
+  const [warning, setWarning] = useState("");
   const [saving, setSaving] = useState(false);
   // Bumped after every add / edit / remove to reload the page data
   const [reloadKey, setReloadKey] = useState(0);
@@ -76,6 +78,7 @@ export default function SupplierDetailClient({ id }) {
     setSaving(true);
     setError("");
     setMessage("");
+    setWarning("");
 
     try {
       const res = await fetch(url, {
@@ -90,6 +93,7 @@ export default function SupplierDetailClient({ id }) {
       }
 
       setMessage(result.message);
+      setWarning(result.warning || "");
       setReloadKey((k) => k + 1);
       return true;
     } catch (err) {
@@ -218,6 +222,12 @@ export default function SupplierDetailClient({ id }) {
       {message && (
         <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-green-700">
           {message}
+        </div>
+      )}
+
+      {warning && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-800">
+          {warning}
         </div>
       )}
 

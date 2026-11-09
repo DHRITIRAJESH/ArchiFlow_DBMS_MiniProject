@@ -1,5 +1,6 @@
 import { query } from "@/lib/db";
 import { dbError } from "@/lib/dberror";
+import { syncMaterial } from "@/lib/materialSync";
 import { requireUser } from "@/lib/session";
 import { materialDbError, parseMaterial } from "@/lib/materials";
 
@@ -146,7 +147,13 @@ export async function PUT(request, { params }) {
       return Response.json({ error: "Material not found." }, { status: 404 });
     }
 
-    return Response.json({ message: "Material updated successfully." });
+    // MySQL write succeeded; now re-embed for semantic search (never throws)
+    const { warning } = await syncMaterial(materialId);
+
+    return Response.json({
+      message: "Material updated successfully.",
+      ...(warning && { warning }),
+    });
   } catch (err) {
     return materialDbError(err);
   }
