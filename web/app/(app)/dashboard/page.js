@@ -23,8 +23,8 @@ export default function DashboardPage() {
   if (err) return <p className="text-red-600">{err}</p>;
   if (!data) return <p>Loading...</p>;
 
-  const { summary, projects } = data;
-  const cards = [
+    const { summary, projects, categorySpend, mostUsedMaterials } = data;
+    const cards = [
     ["Projects", summary.total_projects],
     ["Total budget", money(summary.total_budget)],
     ["Total spent", money(summary.total_spent)],
@@ -80,6 +80,78 @@ export default function DashboardPage() {
           </tbody>
         </table>
       </div>
+<div className="grid md:grid-cols-2 gap-6">
+  <div className="border rounded-lg bg-white shadow-sm">
+    <div className="p-4 border-b">
+      <h2 className="font-semibold">Spend by category</h2>
+    </div>
+
+    <div className="p-4 space-y-4">
+      {categorySpend.length === 0 ? (
+        <p className="text-sm text-gray-500">No material usage recorded yet.</p>
+      ) : (
+        categorySpend.map((item) => (
+          <div key={item.category}>
+            <div className="flex justify-between text-sm mb-1">
+              <span>{item.category}</span>
+              <span className="font-medium">{money(item.spend)}</span>
+            </div>
+
+            <div className="h-2 bg-gray-200 rounded">
+              <div
+                className="h-2 bg-blue-600 rounded"
+                style={{
+                  width: `${Math.min(
+                    (item.spend / Math.max(categorySpend[0].spend, 1)) * 100,
+                    100
+                  )}%`,
+                }}
+              />
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  </div>
+
+  <div className="border rounded-lg bg-white shadow-sm">
+    <div className="p-4 border-b">
+      <h2 className="font-semibold">Most-used materials</h2>
+    </div>
+
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm">
+        <thead className="bg-gray-100 text-left">
+          <tr>
+            <th className="p-3">Material</th>
+            <th className="p-3">Unit</th>
+            <th className="p-3 text-right">Total quantity</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {mostUsedMaterials.length === 0 ? (
+            <tr>
+              <td colSpan="3" className="p-4 text-gray-500">
+                No material usage recorded yet.
+              </td>
+            </tr>
+          ) : (
+            mostUsedMaterials.map((item) => (
+              <tr key={item.material} className="border-t">
+                <td className="p-3 font-medium">{item.material}</td>
+                <td className="p-3">{item.unit}</td>
+                <td className="p-3 text-right">
+                  {item.total_qty.toLocaleString("en-IN")}
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
     </div>
   );
 }
