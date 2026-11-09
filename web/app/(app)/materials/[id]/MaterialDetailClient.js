@@ -49,7 +49,7 @@ export default function MaterialDetailClient({ id }) {
     return <p>Loading material...</p>;
   }
 
-  const { material, cheapestOffers } = data;
+  const { material, cheapestOffers, supplierComparison } = data;
   const cheapest = cheapestOffers[0];
 
   return (
@@ -147,34 +147,80 @@ export default function MaterialDetailClient({ id }) {
         </div>
       </div>
 
-      <div className="border rounded-lg bg-white p-5">
-        <h2 className="text-lg font-semibold mb-4">Cheapest offer</h2>
-
-        {cheapestOffers.length === 0 ? (
-          <p className="text-gray-500 text-sm">
-            No supplier offers this material yet.
+      <div className="border rounded-lg bg-white overflow-x-auto">
+        <div className="p-5">
+          <h2 className="text-lg font-semibold">Supplier comparison</h2>
+          <p className="text-sm text-gray-500 mt-1">
+            {supplierComparison.length === 0
+              ? "Ranked by unit price using the compare_suppliers procedure."
+              : `${supplierComparison.length} supplier${
+                  supplierComparison.length === 1 ? "" : "s"
+                }, ranked by unit price (compare_suppliers procedure).`}
           </p>
+        </div>
+
+        {supplierComparison.length === 0 ? (
+          <div className="border-t px-5 py-8 text-center text-gray-500 text-sm">
+            No supplier offers this material yet. Once a supplier adds it to
+            their price list, it will be compared here.
+          </div>
         ) : (
           <table className="w-full text-sm">
             <thead className="bg-gray-100 text-left">
               <tr>
+                <th className="p-3">Rank</th>
                 <th className="p-3">Supplier</th>
+                <th className="p-3">City</th>
+                <th className="p-3">Rating</th>
                 <th className="p-3 text-right">Unit price</th>
                 <th className="p-3 text-right">Lead time</th>
               </tr>
             </thead>
             <tbody>
-              {cheapestOffers.map((offer) => (
-                <tr key={offer.supplier_id} className="border-t">
-                  <td className="p-3 font-medium">{offer.supplier_name}</td>
-                  <td className="p-3 text-right">
-                    {money(offer.unit_price)}/{material.unit}
-                  </td>
-                  <td className="p-3 text-right">
-                    {offer.lead_time_days} days
-                  </td>
-                </tr>
-              ))}
+              {supplierComparison.map((row) => {
+                // RANK() gives every supplier tied for the lowest price rank 1
+                const cheapestRow = row.price_rank === 1;
+
+                return (
+                  <tr
+                    key={row.supplier_id ?? row.supplier_name}
+                    className={`border-t ${cheapestRow ? "bg-green-50" : ""}`}
+                  >
+                    <td className="p-3">#{row.price_rank}</td>
+                    <td className="p-3">
+                      {row.supplier_id ? (
+                        <Link
+                          href={`/suppliers/${row.supplier_id}`}
+                          className="font-medium hover:underline"
+                        >
+                          {row.supplier_name}
+                        </Link>
+                      ) : (
+                        <span className="font-medium">{row.supplier_name}</span>
+                      )}
+                      {cheapestRow && (
+                        <span className="ml-2 rounded bg-green-600 px-2 py-0.5 text-xs text-white">
+                          Cheapest
+                        </span>
+                      )}
+                    </td>
+                    <td className="p-3">{row.city || "—"}</td>
+                    <td className="p-3">
+                      {row.rating === null ? "—" : `${row.rating.toFixed(1)} / 5`}
+                    </td>
+                    <td
+                      className={`p-3 text-right ${
+                        cheapestRow ? "font-semibold text-green-700" : ""
+                      }`}
+                    >
+                      {money(row.unit_price)}/{material.unit}
+                    </td>
+                    <td className="p-3 text-right">
+                      {row.lead_time_days} days
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}

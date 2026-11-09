@@ -60,6 +60,29 @@ export async function GET(request, { params }) {
       [materialId]
     );
 
+    // Stored procedure: every supplier for this material, ranked by price.
+    // mysql2 returns CALL results nested: [resultRows, ResultSetHeader],
+    // so the rows we want are the first element.
+    const [comparisonRows] = await query("CALL compare_suppliers(?)", [
+      materialId,
+    ]);
+
+    // compare_suppliers() returns the supplier name but not its id.
+    // suppliers.name is UNIQUE, so we can map name -> id for the links.
+    const supplierIdRows = await query(
+      `
+        SELECT s.supplier_id, s.name
+        FROM supplier_materials sm
+        JOIN suppliers s
+          ON s.supplier_id = sm.supplier_id
+        WHERE sm.material_id = ?
+      `,
+      [materialId]
+    );
+    const idByName = new Map(
+      supplierIdRows.map((row) => [row.name, row.supplier_id])
+    );
+
     const material = {
       ...rows[0],
       projects_used_in: Number(rows[0].projects_used_in),
@@ -70,7 +93,17 @@ export async function GET(request, { params }) {
       unit_price: Number(row.unit_price),
     }));
 
-    return Response.json({ material, cheapestOffers });
+    const supplierComparison = comparisonRows.map((row) => ({
+      supplier_id: idByName.get(row.supplier) ?? null,
+      supplier_name: row.supplier,
+      city: row.city,
+      rating: row.rating === null ? null : Number(row.rating),
+      unit_price: Number(row.unit_price),
+      lead_time_days: Number(row.lead_time_days),
+      price_rank: Number(row.price_rank),
+    }));
+
+    return Response.json({ material, cheapestOffers, supplierComparison });
   } catch (err) {
     return dbError(err);
   }
